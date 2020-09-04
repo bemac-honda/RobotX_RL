@@ -1,0 +1,2 @@
+moving_cube_description:spawn_robot_tools/spawn_robot_tools_pkg:vmrc/robotx_gazebo:vmrc/wamv_description
+-DCATKIN_DEVEL_PREFIX=/home/tomoya/simulation_ws/devel -DCMAKE_INSTALL_PREFIX=/home/tomoya/simulation_ws/install -G Unix Makefiles

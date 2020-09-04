@@ -1,0 +1,2 @@
+openai_examples_projects/turtle2_openai_ros_example:openai_examples_projects/wamv_deep_qlearning:openai_examples_projects/wamv_openai_ros_example:openai_ros/openai_ros:spawn_robot_tools/spawn_robot_tools_pkg:vmrc/robotx_gazebo:vmrc/wamv_description
+-DPYTHON_EXECUTABLE:FILEPATH=~/python3_ws/py3venv/bin/python -DCATKIN_DEVEL_PREFIX=/home/tomoya/robotx_ws/devel -DCMAKE_INSTALL_PREFIX=/home/tomoya/robotx_ws/install -G Unix Makefiles

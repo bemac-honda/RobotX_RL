@@ -1,0 +1,8 @@
+prefix=/home/tomoya/simulation_ws/devel
+
+Name: moving_cube_description
+Description: Description of moving_cube_description
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
