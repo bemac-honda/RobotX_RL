@@ -4,4 +4,4 @@ A Docker image to provide HTML5 VNC interface to access Ubuntu LXDE + ROS includ
 
 # Quick Start
 
-1. Run the docker container and access with port '6080'.
+1. Run the docker container and access with port `6080`.
