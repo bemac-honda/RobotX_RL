@@ -13,5 +13,7 @@ A Docker image to provide HTML5 VNC interface to access Ubuntu LXDE + ROS includ
 4. Launch RobotX Challenge simulator as follows.
    To launch the simulation environment
    `roslaunch robotx_gazebo sandisland_with_buoys.launch`
-   To
+   To test the DQN, run
+   `roslaunch wamv_deep_qlearning start_wamv_deepqlearning.launch`
+
 
