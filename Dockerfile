@@ -47,7 +47,7 @@ RUN source ~/python3_ws/py3venv/bin/activate \
     pyaml \
     rospkg \
     empy \
-    && pip3 install keras==2.2.4
+    && pip3 install keras==2.2.4 \
     && catkin_make -DPYTHON_EXECUTABLE:FILEPATH=~/python3_ws/py3venv/bin/python \
     && source ~/python3_ws/devel/setup.bash
 
@@ -56,7 +56,7 @@ COPY simulation_ws/ ~/simulation_ws
 RUN cd ~/simulation_ws \
     && rosdep install -r --from-path src --ignore-src \
     && catkin_make \
-    && source ~/simulation_ws/devel/setup.bash
+    && source ~/simulation_ws/devel/setup.bash \
     && rospack profile \
     && roslaunch robotx_gazebo sandisland_with_buoys.launch
 
