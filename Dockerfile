@@ -34,15 +34,3 @@ RUN source ~/python3_ws/py3venv/bin/activate \
     -e .
 
 # 4. Install the ROS packages required by ROS code and compile
-RUN source ~/python3_ws/py3venv/bin/activate \
-    && cd ~/python3_ws/src/ \
-    && git clone -b melodic-devel https://github.com/ros/geometry \
-# geometry's CMakeLists.txt
-    && git clone -b melodic-devel https://github.com/ros/geometry2 \
-    && pip install \
-    pyaml \
-    rospkg \
-    empy \
-    && pip3 install keras==2.2.4 \
-    && catkin_make -DPYTHON_EXECUTABLE:FILEPATH=~/python3_ws/py3venv/bin/python \
-    && source ~/python3_ws/devel/setup.bash
