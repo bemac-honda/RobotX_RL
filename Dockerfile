@@ -34,16 +34,15 @@ RUN . ~/python3_ws/py3venv/bin/activate \
 
 # 4. Install the ROS packages required by ROS code and compile
 RUN . ~/python3_ws/py3venv/bin/activate \
-    && . ~/python3_ws/devel/setup.bash \
     && cd ~/python3_ws/src/ \
     && git clone -b melodic-devel https://github.com/ros/geometry \
-# geometry's CMakeLists.txt
     && git clone -b melodic-devel https://github.com/ros/geometry2 \
     && pip install pyaml \
     && pip install rospkg \
     && pip install empy \
     && pip3 install keras==2.2.4 \
-    && /bin/bash -c "source /opt/ros/kinetic/setup.bash; \
+COPY CMakeLists.txt ~/python3_ws/src/geometry/geometry/
+RUN /bin/bash -c "source /opt/ros/kinetic/setup.bash; \
     catkin_make -DPYTHON_EXECUTABLE:FILEPATH=~/python3_ws/py3venv/bin/python" \
     && . ~/python3_ws/devel/setup.bash
 
