@@ -59,7 +59,7 @@ RUN cd /home/ubuntu/simulation_ws \
 # 6. Set DeepQlearning
 COPY robotx_ws/ /home/ubuntu/robotx_ws
 RUN . /home/ubuntu/python3_ws/py3venv/bin/activate \
-    && . /home/ubuntu/python3_ws/devel/setup.bash \
+    && /bin/bash -c "source /home/ubuntu/python3_ws/devel/setup.bash" \
     && cd /home/ubuntu/robotx_ws \
     && rm -rf build devel \
     && /bin/bash -c "source /opt/ros/kinetic/setup.bash; \
