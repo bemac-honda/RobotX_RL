@@ -47,3 +47,20 @@ RUN . ~/python3_ws/py3venv/bin/activate \
     catkin_make -DPYTHON_EXECUTABLE:FILEPATH=~/python3_ws/py3venv/bin/python" \
     && . ~/python3_ws/devel/setup.bash
 
+# 5. Launch the simulation environment
+COPY simulation_ws/ ~/simulation_ws
+RUN cd ~/simulation_ws \
+    && rosdep install -r --from-path src --ignore-src \
+    && catkin_make \
+    && . ~/simulation_ws/devel/setup.bash \
+    && rospack profile \
+    && roslaunch robotx_gazebo sandisland_with_buoys.launch
+
+# 6. Start DeepQlearning
+COPY robotx_ws/ ~/robotx_ws
+RUN source ~/python3_ws/py3venv/bin/activate \
+    && source ~/python3_ws/devel/setup.bash \
+    && cd ~/robotx_ws \
+    && rosdep install -r --from-path src --ignore-src \
+    && catkin_make -DPYTHON_EXECUTABLE:FILEPATH=~/python3_ws/py3venv/bin/python \
+    && source ~/robotx_ws/devel/setup.bash \
