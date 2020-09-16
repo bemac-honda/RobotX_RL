@@ -3,7 +3,11 @@ FROM tiryoh/ros-desktop-vnc:kinetic
 
 # For RobotX Challenge by Reinforcement Learning
 # 1. Update Gazebo7 and Install basic python3 packages and virtualenv
-RUN sudo apt-get update \
+RUN sudo apt-get purge -y ros-kinetic-gazebo* \
+    && sudo apt-get purge --auto-remove -y gazebo7 \
+    && sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list' \
+    && wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add - \
+    && sudo apt-get update \
     && sudo apt-get install -y \
     ros-kinetic-desktop-full \
     python-catkin-tools \
@@ -13,6 +17,9 @@ RUN sudo apt-get update \
     libbullet-dev \
     ros-kinetic-hector-gazebo-plugins \
     ros-kinetic-rqt-multiplot \
+    gazebo7 \
+    ros-kinetic-ros-control \
+    ros-kinetic-ros-controllers \
     && pip install --upgrade pip \
     && sudo pip install virtualenv \
     && apt-get clean \
