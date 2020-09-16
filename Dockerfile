@@ -65,10 +65,11 @@ RUN cd /home/ubuntu/simulation_ws \
 
 # 6. Set DeepQlearning
 COPY robotx_ws/ /home/ubuntu/robotx_ws
-RUN . /home/ubuntu/python3_ws/py3venv/bin/activate \
-    && /bin/bash -c "source /home/ubuntu/python3_ws/devel/setup.bash" \
-    && cd /home/ubuntu/robotx_ws \
+RUN cd /home/ubuntu/robotx_ws \
     && rm -rf build devel \
     && /bin/bash -c "source /opt/ros/kinetic/setup.bash; \
-    rosdep install -r --from-path src --ignore-src -y; \
+    rosdep install -r --from-path src --ignore-src -y" \
+    && . /home/ubuntu/python3_ws/py3venv/bin/activate \
+    && /bin/bash -c "source /opt/ros/kinetic/setup.bash; \
+    source /home/ubuntu/python3_ws/devel/setup.bash; \
     catkin_make -DPYTHON_EXECUTABLE:FILEPATH=/home/ubuntu/python3_ws/py3venv/bin/python"
