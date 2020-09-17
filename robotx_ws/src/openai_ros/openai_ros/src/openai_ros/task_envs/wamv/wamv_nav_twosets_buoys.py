@@ -242,24 +242,35 @@ class WamvNavTwoSetsBuoysEnv(wamv_env.WamvEnv):
         if not done:
 
             # If there has been a decrease in the distance to the desired point, we reward it
-            if distance_difference < 0.0:
+            half = (self.work_space_x_max - self.work_space_x_min)/2
+            if distance_difference < 0.0 and distance_from_des_point <= half:
+                rospy.logwarn("DECREASE IN DISTANCE GOOD")
+                reward = 2*self.closer_to_point_reward
+            elif distance_difference < 0.0 and distance_from_des_point > half:
                 rospy.logwarn("DECREASE IN DISTANCE GOOD")
                 reward = self.closer_to_point_reward
             else:
-                rospy.logerr("ENCREASE IN DISTANCE BAD")
+                rospy.logerr("INCREASE IN DISTANCE BAD")
                 reward = -1*self.closer_to_point_reward
+            # if distance_difference < 0.0:
+            #     rospy.logwarn("DECREASE IN DISTANCE GOOD")
+            #     reward = self.closer_to_point_reward
+            # else:
+            #     rospy.logerr("INCREASE IN DISTANCE BAD")
+            #     reward = -1*self.closer_to_point_reward
 
         else:
 
             if self.is_in_desired_position(current_position, self.desired_point_epsilon):
                 reward = self.done_reward
             else:
-                reward = -1*self.done_reward
+                reward = 0
+                # reward = -1*self.done_reward
 
 
         self.previous_distance_from_des_point = distance_from_des_point
 
-        reward -= self.done_reward*0.03
+        reward -= self.done_reward*0.02 # decrease reward every step
 
         rospy.logdebug("reward=" + str(reward))
         self.cumulated_reward += reward

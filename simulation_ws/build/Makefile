@@ -56,15 +56,17 @@ CMAKE_BINARY_DIR = /home/tomoya/simulation_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -88,6 +90,27 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -109,18 +132,6 @@ test:
 test/fast: test
 
 .PHONY : test/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -1181,11 +1192,6 @@ usv_gazebo_thrust_plugin/fast:
 	$(MAKE) -f vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_thrust_plugin.dir/build.make vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_thrust_plugin.dir/build
 .PHONY : usv_gazebo_thrust_plugin/fast
 
-# Manual pre-install relink rule for target.
-usv_gazebo_thrust_plugin/preinstall:
-	$(MAKE) -f vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_thrust_plugin.dir/build.make vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_thrust_plugin.dir/preinstall
-.PHONY : usv_gazebo_thrust_plugin/preinstall
-
 #=============================================================================
 # Target rules for targets named usv_gazebo_dynamics_plugin
 
@@ -1198,11 +1204,6 @@ usv_gazebo_dynamics_plugin: cmake_check_build_system
 usv_gazebo_dynamics_plugin/fast:
 	$(MAKE) -f vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_dynamics_plugin.dir/build.make vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_dynamics_plugin.dir/build
 .PHONY : usv_gazebo_dynamics_plugin/fast
-
-# Manual pre-install relink rule for target.
-usv_gazebo_dynamics_plugin/preinstall:
-	$(MAKE) -f vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_dynamics_plugin.dir/build.make vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_dynamics_plugin.dir/preinstall
-.PHONY : usv_gazebo_dynamics_plugin/preinstall
 
 #=============================================================================
 # Target rules for targets named robotx_gazebo_genpy
@@ -1359,11 +1360,6 @@ buoyancy_gazebo_plugin: cmake_check_build_system
 buoyancy_gazebo_plugin/fast:
 	$(MAKE) -f vmrc/robotx_gazebo/CMakeFiles/buoyancy_gazebo_plugin.dir/build.make vmrc/robotx_gazebo/CMakeFiles/buoyancy_gazebo_plugin.dir/build
 .PHONY : buoyancy_gazebo_plugin/fast
-
-# Manual pre-install relink rule for target.
-buoyancy_gazebo_plugin/preinstall:
-	$(MAKE) -f vmrc/robotx_gazebo/CMakeFiles/buoyancy_gazebo_plugin.dir/build.make vmrc/robotx_gazebo/CMakeFiles/buoyancy_gazebo_plugin.dir/preinstall
-.PHONY : buoyancy_gazebo_plugin/preinstall
 
 #=============================================================================
 # Target rules for targets named bond_generate_messages_cpp
@@ -1651,11 +1647,6 @@ usv_gazebo_wind_plugin/fast:
 	$(MAKE) -f vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_wind_plugin.dir/build.make vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_wind_plugin.dir/build
 .PHONY : usv_gazebo_wind_plugin/fast
 
-# Manual pre-install relink rule for target.
-usv_gazebo_wind_plugin/preinstall:
-	$(MAKE) -f vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_wind_plugin.dir/build.make vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_wind_plugin.dir/preinstall
-.PHONY : usv_gazebo_wind_plugin/preinstall
-
 #=============================================================================
 # Target rules for targets named robotx_gazebo_generate_messages_cpp
 
@@ -1688,7 +1679,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... list_install_components"
+	@echo "... install"
 	@echo "... clean_test_results"
 	@echo "... run_tests"
 	@echo "... download_extra_data"
@@ -1696,9 +1687,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... doxygen"
 	@echo "... rebuild_cache"
+	@echo "... list_install_components"
+	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... test"
-	@echo "... install"
 	@echo "... gmock"
 	@echo "... gmock_main"
 	@echo "... gtest"

@@ -2,8 +2,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/usv_gazebo_thrust_plugin.dir/src/usv_gazebo_thrust_plugin.cc.o"
   "/home/tomoya/simulation_ws/devel/lib/libusv_gazebo_thrust_plugin.pdb"
   "/home/tomoya/simulation_ws/devel/lib/libusv_gazebo_thrust_plugin.so"
-  "/home/tomoya/simulation_ws/devel/lib/libusv_gazebo_thrust_plugin.pdb"
-  "CMakeFiles/CMakeRelink.dir/libusv_gazebo_thrust_plugin.so"
 )
 
 # Per-language clean rules from dependency scanning.

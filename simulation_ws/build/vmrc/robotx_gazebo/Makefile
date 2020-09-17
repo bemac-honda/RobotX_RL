@@ -99,6 +99,17 @@ test/fast: test
 
 .PHONY : test/fast
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
+
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -169,11 +180,6 @@ usv_gazebo_thrust_plugin/fast:
 	cd /home/tomoya/simulation_ws/build && $(MAKE) -f vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_thrust_plugin.dir/build.make vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_thrust_plugin.dir/build
 .PHONY : usv_gazebo_thrust_plugin/fast
 
-# Manual pre-install relink rule for target.
-usv_gazebo_thrust_plugin/preinstall:
-	cd /home/tomoya/simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_thrust_plugin.dir/preinstall
-.PHONY : usv_gazebo_thrust_plugin/preinstall
-
 # Convenience name for target.
 vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_dynamics_plugin.dir/rule:
 	cd /home/tomoya/simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_dynamics_plugin.dir/rule
@@ -188,11 +194,6 @@ usv_gazebo_dynamics_plugin: vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_dynamics_pl
 usv_gazebo_dynamics_plugin/fast:
 	cd /home/tomoya/simulation_ws/build && $(MAKE) -f vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_dynamics_plugin.dir/build.make vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_dynamics_plugin.dir/build
 .PHONY : usv_gazebo_dynamics_plugin/fast
-
-# Manual pre-install relink rule for target.
-usv_gazebo_dynamics_plugin/preinstall:
-	cd /home/tomoya/simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_dynamics_plugin.dir/preinstall
-.PHONY : usv_gazebo_dynamics_plugin/preinstall
 
 # Convenience name for target.
 vmrc/robotx_gazebo/CMakeFiles/robotx_gazebo_genpy.dir/rule:
@@ -373,11 +374,6 @@ buoyancy_gazebo_plugin: vmrc/robotx_gazebo/CMakeFiles/buoyancy_gazebo_plugin.dir
 buoyancy_gazebo_plugin/fast:
 	cd /home/tomoya/simulation_ws/build && $(MAKE) -f vmrc/robotx_gazebo/CMakeFiles/buoyancy_gazebo_plugin.dir/build.make vmrc/robotx_gazebo/CMakeFiles/buoyancy_gazebo_plugin.dir/build
 .PHONY : buoyancy_gazebo_plugin/fast
-
-# Manual pre-install relink rule for target.
-buoyancy_gazebo_plugin/preinstall:
-	cd /home/tomoya/simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vmrc/robotx_gazebo/CMakeFiles/buoyancy_gazebo_plugin.dir/preinstall
-.PHONY : buoyancy_gazebo_plugin/preinstall
 
 # Convenience name for target.
 vmrc/robotx_gazebo/CMakeFiles/bond_generate_messages_cpp.dir/rule:
@@ -709,11 +705,6 @@ usv_gazebo_wind_plugin/fast:
 	cd /home/tomoya/simulation_ws/build && $(MAKE) -f vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_wind_plugin.dir/build.make vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_wind_plugin.dir/build
 .PHONY : usv_gazebo_wind_plugin/fast
 
-# Manual pre-install relink rule for target.
-usv_gazebo_wind_plugin/preinstall:
-	cd /home/tomoya/simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vmrc/robotx_gazebo/CMakeFiles/usv_gazebo_wind_plugin.dir/preinstall
-.PHONY : usv_gazebo_wind_plugin/preinstall
-
 # Convenience name for target.
 vmrc/robotx_gazebo/CMakeFiles/robotx_gazebo_generate_messages_cpp.dir/rule:
 	cd /home/tomoya/simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vmrc/robotx_gazebo/CMakeFiles/robotx_gazebo_generate_messages_cpp.dir/rule
@@ -862,6 +853,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... install/strip"
 	@echo "... usv_gazebo_thrust_plugin"
 	@echo "... usv_gazebo_dynamics_plugin"
 	@echo "... robotx_gazebo_genpy"

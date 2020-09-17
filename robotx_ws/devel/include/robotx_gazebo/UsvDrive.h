@@ -75,8 +75,8 @@ namespace message_traits
 
 
 
-// BOOLTRAITS {'IsFixedSize': True, 'HasHeader': False, 'IsMessage': True}
-// {'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'nav_msgs': ['/opt/ros/kinetic/share/nav_msgs/cmake/../msg'], 'robotx_gazebo': ['/home/tomoya/robotx_ws/src/vmrc/robotx_gazebo/msg'], 'actionlib_msgs': ['/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg']}
+// BOOLTRAITS {'IsMessage': True, 'HasHeader': False, 'IsFixedSize': True}
+// {'robotx_gazebo': ['/home/tomoya/robotx_ws/src/vmrc/robotx_gazebo/msg'], 'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'nav_msgs': ['/opt/ros/kinetic/share/nav_msgs/cmake/../msg'], 'actionlib_msgs': ['/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg']}
 
 // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
 
@@ -84,12 +84,12 @@ namespace message_traits
 
 
 template <class ContainerAllocator>
-struct IsFixedSize< ::robotx_gazebo::UsvDrive_<ContainerAllocator> >
+struct IsMessage< ::robotx_gazebo::UsvDrive_<ContainerAllocator> >
   : TrueType
   { };
 
 template <class ContainerAllocator>
-struct IsFixedSize< ::robotx_gazebo::UsvDrive_<ContainerAllocator> const>
+struct IsMessage< ::robotx_gazebo::UsvDrive_<ContainerAllocator> const>
   : TrueType
   { };
 
@@ -104,12 +104,12 @@ struct HasHeader< ::robotx_gazebo::UsvDrive_<ContainerAllocator> const>
   { };
 
 template <class ContainerAllocator>
-struct IsMessage< ::robotx_gazebo::UsvDrive_<ContainerAllocator> >
+struct IsFixedSize< ::robotx_gazebo::UsvDrive_<ContainerAllocator> >
   : TrueType
   { };
 
 template <class ContainerAllocator>
-struct IsMessage< ::robotx_gazebo::UsvDrive_<ContainerAllocator> const>
+struct IsFixedSize< ::robotx_gazebo::UsvDrive_<ContainerAllocator> const>
   : TrueType
   { };
 

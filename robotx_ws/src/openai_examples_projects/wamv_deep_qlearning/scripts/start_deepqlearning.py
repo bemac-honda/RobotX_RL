@@ -117,6 +117,8 @@ class DQNRobotSolver():
 
                 state = next_state
                 i += 1
+                if i >= 30:
+                    done = True
 
 
             scores.append(i)
@@ -125,7 +127,10 @@ class DQNRobotSolver():
                 if not self.quiet: print('Ran {} episodes. Solved after {} trials'.format(e, e - min_episodes))
                 return e - min_episodes
             if e % 1 == 0 and not self.quiet:
-                print('[Episode {}] - Mean survival time over last {} episodes was {} ticks.'.format(e, min_episodes ,mean_score))
+                print('[Episode {}] - {} actions this episode.'.format(e, i))
+            # if e % 1 == 0 and not self.quiet:
+            #     print('[Episode {}] - Mean survival time over last {} episodes was {} ticks.'.format(e, min_episodes, mean_score))
+
 
             if do_train:
                 self.replay(self.batch_size)
