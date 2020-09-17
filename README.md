@@ -46,4 +46,4 @@ A Docker image to provide HTML5 VNC interface to access Ubuntu LXDE + ROS includ
 
    `cd RobotX_RL`
 
-   `docker build -t honda28/robotx-dqn:latest`
+   `docker build . -t honda28/robotx-dqn:latest`
