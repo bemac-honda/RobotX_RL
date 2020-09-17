@@ -73,3 +73,6 @@ RUN cd /home/ubuntu/robotx_ws \
     && /bin/bash -c "source /opt/ros/kinetic/setup.bash; \
     source /home/ubuntu/python3_ws/devel/setup.bash; \
     catkin_make -DPYTHON_EXECUTABLE:FILEPATH=/home/ubuntu/python3_ws/py3venv/bin/python"
+
+# 7. Copy the plot configuration file
+COPY RLplot.xml /home/ubuntu/
