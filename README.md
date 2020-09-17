@@ -8,7 +8,7 @@ A Docker image to provide HTML5 VNC interface to access Ubuntu LXDE + ROS includ
 
    - Change the `shm-size` value depending on the situation. 
    
-      `docker run -p 6080:80 --shm-size=512m honda28/RobotX_RL:latest`
+      `docker run -p 6080:80 --shm-size=512m honda28/robotx-dqn:latest`
 
 2. Browse http://127.0.0.1:6080.
 
